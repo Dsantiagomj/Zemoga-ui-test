@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/Dsantiagomj/Zemoga-ui-test#readme",
   "dependencies": {
+    "cross-env": "^5.2.1",
     "express": "^4.17.1"
   },
   "devDependencies": {
