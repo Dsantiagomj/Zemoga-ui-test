@@ -1,0 +1,30 @@
+{
+  "name": "zemoga-ui-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node src/index",
+    "dev": "cross-env NODE_ENV=development nodemon --inspect src/index",
+    "test": "cross-env NODE_ENV=test echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dsantiagomj/Zemoga-ui-test.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dsantiagomj/Zemoga-ui-test/issues"
+  },
+  "homepage": "https://github.com/Dsantiagomj/Zemoga-ui-test#readme",
+  "dependencies": {
+    "cross-env": "^5.2.1",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
