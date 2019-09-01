@@ -19,7 +19,8 @@
     "url": "https://github.com/Dsantiagomj/Zemoga-ui-test/issues"
   },
   "homepage": "https://github.com/Dsantiagomj/Zemoga-ui-test#readme",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "nodemon": "^1.19.1"
   }
 }
