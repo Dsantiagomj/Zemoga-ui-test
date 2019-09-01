@@ -1,7 +1,7 @@
 const express = require("express");
 const requestId = require("express-request-id")();
 const bodyParser = require("body-parser");
-const HTTP_STATUS = require("http-status-codes");
+const HTTP_STATUS_CODE = require("http-status-codes");
 
 const logger = require("./config/logger");
 const api = require("./api/v1");
@@ -9,52 +9,43 @@ const api = require("./api/v1");
 const app = express();
 
 // Setup Middleware
+app.use(requestId);
+app.use(logger.requests);
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
-
 // parse application/json
 app.use(bodyParser.json());
 
-// Request Id
-app.use(requestId);
-
-// Log requests
-app.use(logger.requests);
-
-app.use("/api/v1", api);
+// Setup router and routes
 app.use("/api", api);
+app.use("/api/v1", api);
 
-// Not route found middleware
-
+// No route found handler
 app.use((req, res, next) => {
-  const message = "Route not found";
-  const statusCode = HTTP_STATUS.NOT_FOUND;
-
   next({
-    message,
-    statusCode,
-    level: "info",
+    message: "Route not found",
+    statusCode: HTTP_STATUS_CODE.NOT_FOUND,
+    level: "warn",
   });
 });
 
-// Error middleware
-
 app.use((err, req, res, next) => {
-  const { message, level = "error", name } = err;
-  let { statusCode = HTTP_STATUS.INTERNAL_SERVER_ERROR } = err;
-  const logMessage = `${logger.header(req)} ${statusCode} ${message}`;
+  const { message, level = "error" } = err;
+  let { statusCode = HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR } = err;
+  const log = `${logger.header(req)} ${statusCode} ${message}`;
 
-  // Validation Errors
-  if (name === "ValidationError") {
-    statusCode = HTTP_STATUS.UNPROCESSABLE_ENTITY;
+  if (err.name === "ValidationError") {
+    statusCode = HTTP_STATUS_CODE.UNPROCESSABLE_ENTITY;
   }
 
-  logger[level](logMessage);
+  logger[level](log);
 
   res.status(statusCode);
   res.json({
+    error: true,
     message,
+    statusCode,
   });
 });
 
