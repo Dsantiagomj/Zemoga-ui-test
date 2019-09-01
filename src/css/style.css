@@ -325,8 +325,13 @@ a {
   bottom: 50px;
   color: white;
   display: flex;
+  height: 163px;
   margin-bottom: 33px;
   position: absolute;
+}
+
+.stars__card.card--3 .card__content {
+  height: 208px;
 }
 
 .content__wrapper {
@@ -372,7 +377,7 @@ a {
   font-weight: 400;
   margin: 0;
   vertical-align: sub;
-  width: 90%;
+  width: 100%;
 }
 
 .content__description {
