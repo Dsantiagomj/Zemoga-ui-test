@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index",
-    "dev": "nodemon --inspect",
+    "start": "node src/index",
+    "dev": "nodemon --inspect src/index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,7 +19,9 @@
     "url": "https://github.com/Dsantiagomj/Zemoga-ui-test/issues"
   },
   "homepage": "https://github.com/Dsantiagomj/Zemoga-ui-test#readme",
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.17.1"
+  },
   "devDependencies": {
     "nodemon": "^1.19.1"
   }
