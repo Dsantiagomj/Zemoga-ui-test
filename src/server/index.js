@@ -1,19 +1,14 @@
 const express = require("express");
-const morgan = require("morgan");
+const requestId = require("express-request-id")();
 
+const logger = require("./config/logger");
 const api = require("./api/v1");
 
 const app = express();
 
-const logger = require("./config/logger");
-
-app.use(
-  morgan("combined", {
-    stream: {
-      write: message => logger.info(message),
-    },
-  })
-);
+// Setup Middleware
+app.use(requestId);
+app.use(logger.requests);
 
 app.use("/api/v1", api);
 app.use("/api", api);
@@ -24,19 +19,20 @@ app.use((req, res, next) => {
   const message = "Route not found";
   const statusCode = 404;
 
-  logger.warn(message);
-
-  res.status(statusCode);
-  res.json({
+  next({
     message,
+    statusCode,
+    level: "info",
   });
 });
 
 // Error middleware
-app.use((err, req, res, next) => {
-  const { message, statusCode = 500 } = err;
 
-  logger.error(message);
+app.use((err, req, res, next) => {
+  const { message, statusCode = 500, level = "error" } = err;
+  const logMessage = `${logger.header(req)} ${statusCode} ${message}`;
+
+  logger[level](logMessage);
 
   res.status(statusCode);
   res.json({
