@@ -15,10 +15,9 @@ class HomeView extends Component {
 
   getInfo = async () => {
     try {
-      await axios.get(`${this.state.apiUrl}/candidates`).then(response => {
-        this.setState({
-          candidates: response.data.data,
-        });
+      const response = await axios.get(`${this.state.apiUrl}/candidates`);
+      this.setState({
+        candidates: response.data.data,
       });
     } catch (err) {
       console.error(err);
@@ -26,12 +25,16 @@ class HomeView extends Component {
   };
 
   render() {
-    const { candidates } = this.state;
+    const { candidates, apiUrl } = this.state;
     return (
       <div>
         <Header />
         <Popup />
-        <CardsContainer candidates={candidates} />
+        <CardsContainer
+          candidates={candidates}
+          apiUrl={apiUrl}
+          getInfo={this.getInfo}
+        />
         <Footer />
       </div>
     );

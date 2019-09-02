@@ -13,20 +13,46 @@ export default class Card extends Component {
 
   render() {
     const {
+      id,
       starCard,
       starName,
       starCategory,
       starTotalVotes,
       starPositiveVotes,
       handleThumbClick,
+      handleVoteClick,
     } = this.props;
+
+    let positivePercentage = 50;
+    let negativePercentage = 50;
+
+    if (starTotalVotes) {
+      positivePercentage = Math.round(
+        (starPositiveVotes / starTotalVotes) * 100
+      );
+      negativePercentage = Math.round(
+        ((starTotalVotes - starPositiveVotes) / starTotalVotes) * 100
+      );
+    }
     return (
       <article className={starCard}>
         <div className="card__content">
-          <div className="active content content--like">
+          <div
+            className={
+              starTotalVotes / 2 <= starPositiveVotes
+                ? "active content content--like"
+                : " content content--like"
+            }
+          >
             <img src={Thumb} alt="like" className="content__icon" />
           </div>
-          <div className="content content--dislike">
+          <div
+            className={
+              starTotalVotes / 2 > starPositiveVotes
+                ? "active content content--dislike"
+                : " content content--dislike"
+            }
+          >
             <img src={Thumb} alt="dislike" className="content__icon" />
           </div>
           <div className="content__wrapper">
@@ -66,6 +92,15 @@ export default class Card extends Component {
                 <a
                   href="localhost:3000"
                   className="button__inline button__inline--now active"
+                  onClick={() => {
+                    handleVoteClick(
+                      id,
+                      this.thumbUp,
+                      this.thumbDown,
+                      starTotalVotes,
+                      starPositiveVotes
+                    );
+                  }}
                 >
                   Vote Now
                 </a>
@@ -80,11 +115,14 @@ export default class Card extends Component {
           </div>
         </div>
         <div className="card__progress">
-          <span className="progress__value"></span>
+          <span
+            className="progress__value"
+            style={{ width: `${positivePercentage}%` }}
+          ></span>
           <img className="progress__icon--like" src={Thumb} alt="like" />
-          <span className="progress__like"> 50%</span>
+          <span className="progress__like">{positivePercentage}%</span>
           <img className="progress__icon--dislike" src={Thumb} alt="dislike" />
-          <span className="progress__dislike">50%</span>
+          <span className="progress__dislike">{negativePercentage}%</span>
         </div>
       </article>
     );
