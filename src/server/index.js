@@ -2,6 +2,7 @@ const express = require("express");
 const requestId = require("express-request-id")();
 const bodyParser = require("body-parser");
 const HTTP_STATUS_CODE = require("http-status-codes");
+const path = require("path");
 
 const logger = require("./config/logger");
 const api = require("./api/v1");
@@ -20,6 +21,7 @@ app.use(bodyParser.json());
 // Setup router and routes
 app.use("/api", api);
 app.use("/api/v1", api);
+app.use(express.static(__dirname.replace("server", "public")));
 
 // No route found handler
 app.use((req, res, next) => {
