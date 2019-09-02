@@ -83,6 +83,20 @@ export default class CardsContainer extends Component {
     thumbDown.classList.toggle("none");
   };
 
+  identifyPhoto = name => {
+    const firstName = name.split(" ")[0].toLowerCase();
+    switch (firstName) {
+      case "mark":
+        return "2";
+      case "cristina":
+        return "3";
+      case "malala":
+        return "4";
+      default:
+        return "";
+    }
+  };
+
   render() {
     const { candidates } = this.props;
     return (
@@ -94,9 +108,9 @@ export default class CardsContainer extends Component {
               <Card
                 key={candidate._id}
                 id={candidate._id}
-                starCard={
-                  index === 0 ? "stars__card" : `stars__card card--${index + 1}`
-                }
+                starCard={`stars__card card--${this.identifyPhoto(
+                  candidate.name
+                )}`}
                 starName={candidate.name}
                 starCategory={candidate.category}
                 starTotalVotes={candidate.votes}
