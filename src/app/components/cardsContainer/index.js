@@ -6,6 +6,13 @@ import Submit from "./../submit";
 import "./style.css";
 
 export default class CardsContainer extends Component {
+  handleClick = (ref, oppositeRef) => {
+    const thumb = ref.current;
+    const oppositeThumb = oppositeRef.current;
+    thumb.classList.add("active");
+    oppositeThumb.classList.remove("active");
+  };
+
   render() {
     const { candidates } = this.props;
     return (
@@ -23,6 +30,7 @@ export default class CardsContainer extends Component {
                 starCategory={candidate.category}
                 starTotalVotes={candidate.votes}
                 starPositiveVotes={candidate.positiveVotes}
+                handleThumbClick={this.handleClick}
               />
             );
           })}

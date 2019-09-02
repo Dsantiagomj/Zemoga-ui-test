@@ -5,6 +5,12 @@ import Thumb from "../../../public/assets/like.svg";
 import "./style.css";
 
 export default class Card extends Component {
+  constructor(props) {
+    super(props);
+    this.thumbUp = React.createRef();
+    this.thumbDown = React.createRef();
+  }
+
   render() {
     const {
       starCard,
@@ -12,6 +18,7 @@ export default class Card extends Component {
       starCategory,
       starTotalVotes,
       starPositiveVotes,
+      handleThumbClick,
     } = this.props;
     return (
       <article className={starCard}>
@@ -37,10 +44,18 @@ export default class Card extends Component {
               Thank you for voting!
             </p>
             <div className="content__buttons">
-              <div className="buttons thumbs__button">
+              <div
+                className="buttons thumbs__button"
+                onClick={() => handleThumbClick(this.thumbUp, this.thumbDown)}
+                ref={this.thumbUp}
+              >
                 <img src={Thumb} alt="thumb up" className="button__image" />
               </div>
-              <div className="buttons thumbs__button--dislike">
+              <div
+                className="buttons thumbs__button--dislike"
+                onClick={() => handleThumbClick(this.thumbDown, this.thumbUp)}
+                ref={this.thumbDown}
+              >
                 <img
                   src={Thumb}
                   alt="thumb down"
