@@ -1,0 +1,296 @@
+.stars {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.stars__title {
+  font-size: 30px;
+  font-weight: 150;
+  text-align: center;
+  width: 100%;
+}
+
+.stars__card {
+  background-image: url(./../../../public/assets/kanye.png);
+  background-size: cover;
+  height: 550px;
+  margin-bottom: 40px;
+  position: relative;
+  width: 492px;
+}
+
+.stars__card.card--2 {
+  background-image: url(./../../../public/assets/mark.png);
+}
+
+.stars__card.card--3 {
+  background-image: url(./../../../public/assets/cristina.png);
+}
+
+.stars__card.card--4 {
+  background-image: url(./../../../public/assets/malala.png);
+}
+
+/*Content of each star*/
+.card__content {
+  align-items: baseline;
+  bottom: 50px;
+  color: white;
+  display: flex;
+  height: 163px;
+  margin-bottom: 33px;
+  position: absolute;
+}
+
+.stars__card.card--3 .card__content {
+  height: 208px;
+}
+
+.content__wrapper {
+  padding: 0 15px;
+  width: 95%;
+}
+
+.content {
+  display: none;
+  height: 33px;
+  width: 33px;
+}
+
+.content--like {
+  background-color: rgb(46, 188, 181);
+}
+
+.content--dislike {
+  background-color: rgb(250, 174, 48);
+}
+
+.content--like.active {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+}
+
+.content--dislike.active {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  transform: rotate(180deg);
+}
+
+.content__icon {
+  height: 20px;
+  width: 20px;
+}
+
+.content__title {
+  display: inline-block;
+  font-size: 38px;
+  font-weight: 400;
+  margin: 0;
+  vertical-align: sub;
+  width: 100%;
+}
+
+.content__description {
+  font-size: 12px;
+  font-weight: 350;
+  margin: 0;
+}
+
+.description__span {
+  font-weight: bold;
+}
+
+.card__content p {
+  padding: 0;
+}
+
+.content__text {
+  display: none;
+  font-size: 16px;
+  font-weight: 150;
+}
+
+.content__text--default.active,
+.content__text--again.active {
+  display: block;
+}
+
+/*Buttons of each star*/
+.content__buttons {
+  align-items: center;
+  display: inline-flex;
+  padding: 0;
+  width: 100%;
+}
+
+.buttons {
+  align-items: center;
+  border: none;
+  display: flex;
+  height: 33px;
+  justify-content: center;
+  margin-right: 20px;
+  width: 33px;
+}
+
+.buttons::nth-child(3) {
+  margin-left: 50px;
+}
+
+.thumbs__button {
+  background-color: rgba(46, 188, 181, 0.7);
+  cursor: pointer;
+}
+
+.buttons.none {
+  display: none;
+}
+
+.thumbs__button--dislike {
+  background-color: rgba(250, 174, 48, 0.7);
+  cursor: pointer;
+}
+
+.thumbs__button.active {
+  border: 2px solid white;
+}
+
+.thumbs__button--dislike.active {
+  border: 2px solid white;
+}
+
+.thumbs__button.none {
+  display: none;
+}
+
+.thumbs__button--dislike.none {
+  display: none;
+}
+
+.button__image {
+  height: 20px;
+  width: 20px;
+}
+
+.button__image--dislike {
+  transform: rotate(180deg);
+}
+
+.vote__button {
+  width: 100px;
+}
+
+.button__inline {
+  border: 1px solid white;
+  display: none;
+  font-size: 13px;
+  padding: 12px 20px;
+  text-align: center;
+}
+
+.button__inline--again {
+  padding: 10px 15px;
+}
+
+.button__inline.active {
+  display: inline;
+}
+
+/*Progress bar of each star*/
+.card__progress {
+  align-items: center;
+  background-color: rgba(250, 174, 48, 0.8);
+  bottom: 0px;
+  display: flex;
+  height: 50px;
+  position: absolute;
+  width: 100%;
+}
+
+.progress__value {
+  background-color: rgba(46, 188, 181, 0.8);
+  display: inline-block;
+  height: 100%;
+  width: 50%;
+}
+
+.progress__like {
+  color: white;
+  font-size: 26px;
+  font-weight: 100;
+  left: 40px;
+  position: absolute;
+  top: 18%;
+}
+
+.progress__dislike {
+  color: white;
+  font-size: 26px;
+  font-weight: 100;
+  position: absolute;
+  right: 40px;
+  top: 18%;
+}
+
+.progress__icon--like {
+  height: 25px;
+  left: 5px;
+  position: absolute;
+  top: 26%;
+  width: 25px;
+}
+
+.progress__icon--dislike {
+  height: 25px;
+  position: absolute;
+  right: 5px;
+  top: 26%;
+  transform: rotate(180deg);
+  width: 25px;
+}
+
+@media (max-width: 550px) {
+  /*Header Article*/
+  .section__article {
+    font-weight: 150;
+    padding: 20px 20px 0px 20px;
+  }
+
+  .article__title {
+    font-size: 45px;
+    font-weight: 400;
+    margin: 0;
+  }
+
+  .article__title--span {
+    display: block;
+    font-size: 12px;
+    font-weight: 150;
+  }
+
+  .article__text {
+    font-size: 18px;
+    max-height: 108px;
+  }
+  /*Stars*/
+  .stars__card {
+    background-position: center;
+  }
+}
+
+/*Large Devices*/
+@media (min-width: 992px) {
+  /*Stars*/
+  .stars {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .stars__card {
+    width: 48%;
+  }
+}
