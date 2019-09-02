@@ -6,7 +6,13 @@ import "./style.css";
 
 export default class Card extends Component {
   render() {
-    const { starCard, starName, starCategory } = this.props;
+    const {
+      starCard,
+      starName,
+      starCategory,
+      starTotalVotes,
+      starPositiveVotes,
+    } = this.props;
     return (
       <article className={starCard}>
         <div className="card__content">
@@ -19,7 +25,8 @@ export default class Card extends Component {
           <div className="content__wrapper">
             <h3 className="content__title">{starName}</h3>
             <p className="content__description">
-              <span className="description__span">1 month ago</span>{" "}
+              <span className="description__span">1 month ago</span>
+              {" in "}
               {starCategory}
             </p>
             <p className="active content__text content__text--default">
