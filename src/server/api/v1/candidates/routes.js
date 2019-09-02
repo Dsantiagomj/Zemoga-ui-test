@@ -2,6 +2,7 @@ const router = require("express").Router();
 
 const controller = require("./controller");
 
+router.param("id", controller.id);
 /*
  * /api/tasks/     POST    CREATE
  * /api/tasks/     GET     GET ALL
