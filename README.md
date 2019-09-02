@@ -39,3 +39,6 @@ Finally to run the frontend execute
     npm run dev
 
 New tab will be open with the project fully running
+
+You can also check the project developed with vanillajs, to do refer to vanillajs last commit
+git checkout 2713e5c
