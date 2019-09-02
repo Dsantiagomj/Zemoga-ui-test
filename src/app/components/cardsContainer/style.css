@@ -1,0 +1,15 @@
+.container {
+  padding: 0 20px;
+  width: 100%;
+  max-width: 1250px;
+  margin: 0 auto;
+}
+
+@media (min-width: 992px) {
+  .container {
+    padding: 0 130px 0 130px;
+  }
+  .stars__title {
+    text-align: left;
+  }
+}
