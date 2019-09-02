@@ -26,7 +26,7 @@ export default class Header extends Component {
                 another papal pervert protector? (thumbs down) or a true
                 pedophile punishing pontiff? (thumbs up).
               </p>
-              <a className="article__link" href="localhost:3000">
+              <a className="article__link" href="#">
                 <img
                   className="article__icon"
                   src={Wikipedia}

@@ -101,7 +101,7 @@ export default class Card extends Component {
               </div>
               <div className="buttons vote__button">
                 <a
-                  href="localhost:3000"
+                  href="#"
                   className="button__inline button__inline--now active"
                   ref={this.voteNowButton}
                   onClick={() => {
@@ -121,7 +121,7 @@ export default class Card extends Component {
                   Vote Now
                 </a>
                 <a
-                  href="localhost:3000"
+                  href="#"
                   className="button__inline button__inline--again"
                   ref={this.voteAgainButton}
                   onClick={() => {
