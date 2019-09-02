@@ -19,13 +19,21 @@ export default class CardsContainer extends Component {
     ref,
     oppositeRef,
     candidateVote,
-    candidatePositiveVotes
+    candidatePositiveVotes,
+    voteTextRef,
+    voteNowButtonRef,
+    voteAgainTextRef,
+    voteAgainButtonRef
   ) => {
     const { apiUrl, getInfo } = this.props;
     const thumbUp = ref.current;
     const thumbDown = oppositeRef.current;
     let votes = candidateVote;
     let positiveVotes = candidatePositiveVotes;
+    const voteText = voteTextRef.current;
+    const voteNowButton = voteNowButtonRef.current;
+    const voteAgainText = voteAgainTextRef.current;
+    const voteAgainButton = voteAgainButtonRef.current;
 
     if (thumbUp.classList.length > thumbDown.classList.length) {
       votes += 1;
@@ -43,6 +51,36 @@ export default class CardsContainer extends Component {
     } catch (error) {
       console.error(error);
     }
+
+    voteText.classList.toggle("active");
+    voteAgainText.classList.toggle("active");
+    voteNowButton.classList.toggle("active");
+    voteAgainButton.classList.toggle("active");
+    thumbUp.classList.toggle("none");
+    thumbDown.classList.toggle("none");
+  };
+
+  handleVoteAgain = (
+    voteTextRef,
+    voteNowButtonRef,
+    voteAgainTextRef,
+    voteAgainButtonRef,
+    thumbUpRef,
+    thumbDownRef
+  ) => {
+    const voteText = voteTextRef.current;
+    const voteNowButton = voteNowButtonRef.current;
+    const voteAgainText = voteAgainTextRef.current;
+    const voteAgainButton = voteAgainButtonRef.current;
+    const thumbUp = thumbUpRef.current;
+    const thumbDown = thumbDownRef.current;
+
+    voteText.classList.toggle("active");
+    voteAgainText.classList.toggle("active");
+    voteNowButton.classList.toggle("active");
+    voteAgainButton.classList.toggle("active");
+    thumbUp.classList.toggle("none");
+    thumbDown.classList.toggle("none");
   };
 
   render() {
@@ -64,7 +102,8 @@ export default class CardsContainer extends Component {
                 starTotalVotes={candidate.votes}
                 starPositiveVotes={candidate.positiveVotes}
                 handleThumbClick={this.handleClick}
-                handleVoteClick={this.handleVote}
+                handleVoteNowClick={this.handleVote}
+                handleVoteAgainClick={this.handleVoteAgain}
               />
             );
           })}

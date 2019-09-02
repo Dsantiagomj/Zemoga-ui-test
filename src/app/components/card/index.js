@@ -9,6 +9,10 @@ export default class Card extends Component {
     super(props);
     this.thumbUp = React.createRef();
     this.thumbDown = React.createRef();
+    this.voteText = React.createRef();
+    this.voteAgainText = React.createRef();
+    this.voteNowButton = React.createRef();
+    this.voteAgainButton = React.createRef();
   }
 
   render() {
@@ -20,7 +24,8 @@ export default class Card extends Component {
       starTotalVotes,
       starPositiveVotes,
       handleThumbClick,
-      handleVoteClick,
+      handleVoteNowClick,
+      handleVoteAgainClick,
     } = this.props;
 
     let positivePercentage = 50;
@@ -62,11 +67,17 @@ export default class Card extends Component {
               {" in "}
               {starCategory}
             </p>
-            <p className="active content__text content__text--default">
+            <p
+              className="active content__text content__text--default"
+              ref={this.voteText}
+            >
               Vestibulum diam ante, porttitos a odio eget, rhoncus neque. Aenean
               eu velit libero.
             </p>
-            <p className="content__text content__text--again">
+            <p
+              className="content__text content__text--again"
+              ref={this.voteAgainText}
+            >
               Thank you for voting!
             </p>
             <div className="content__buttons">
@@ -92,13 +103,18 @@ export default class Card extends Component {
                 <a
                   href="localhost:3000"
                   className="button__inline button__inline--now active"
+                  ref={this.voteNowButton}
                   onClick={() => {
-                    handleVoteClick(
+                    handleVoteNowClick(
                       id,
                       this.thumbUp,
                       this.thumbDown,
                       starTotalVotes,
-                      starPositiveVotes
+                      starPositiveVotes,
+                      this.voteText,
+                      this.voteNowButton,
+                      this.voteAgainText,
+                      this.voteAgainButton
                     );
                   }}
                 >
@@ -107,6 +123,17 @@ export default class Card extends Component {
                 <a
                   href="localhost:3000"
                   className="button__inline button__inline--again"
+                  ref={this.voteAgainButton}
+                  onClick={() => {
+                    handleVoteAgainClick(
+                      this.voteText,
+                      this.voteNowButton,
+                      this.voteAgainText,
+                      this.voteAgainButton,
+                      this.thumbUp,
+                      this.thumbDown
+                    );
+                  }}
                 >
                   Vote again
                 </a>
